@@ -1,35 +1,52 @@
-import React from "react";
-import ExpenseItem from "./components/Expenses/ExpenseItem";
-import expenses from "./components/Expenses/Expenses"
-import Card from "./components/UI/Card";
+//QUESTAO 7
 
-function App() {
+// import React from 'react';
+
+// import './App.css';
+
+// // don't change the Component name "App"
+// export default function App() {
+//     const [msgValidez, setMsgValidez] = React.useState('Invalid')
+    
+//     function messageChangeHandler(event){
+//         const valor = event.target.value;
+        
+//         if(valor.trim().length >= 3){
+//             setMsgValidez("Valid");
+//         }else{
+//             setMsgValidez("Invalid");
+//         }
+//     }
+//     return (
+//         <form>
+//             <label>Your message</label>
+//             <input type="text" onChange={messageChangeHandler} />
+//             <p>{msgValidez} message</p>
+//         </form>
+//     );
+// }
+
+
+// QUESTAO 8
+
+import React from 'react';
+
+import './App.css';
+
+// don't change the Component name "App"
+export default function App() {
+    const [numero, setNumero] = React.useState(0)
+    
+    function onClickHandler(event){
+        var valor = event.target.value;
+        valor += 1;
+        return setNumero(valor);
+    }
+    
     return (
-        <Card className="expenses">
-            <h2>Let's get started!</h2>
-            <p>This is also a content</p>
-            <ExpenseItem
-                title={expenses[0].title}
-                amount={expenses[0].amount}
-                date={expenses[0].date}
-            ></ExpenseItem>
-            <ExpenseItem
-                title={expenses[1].title}
-                amount={expenses[1].amount}
-                date={expenses[1].date}
-            ></ExpenseItem>
-            <ExpenseItem
-                title={expenses[2].title}
-                amount={expenses[2].amount}
-                date={expenses[2].date}
-            ></ExpenseItem>
-            <ExpenseItem
-                title={expenses[3].title}
-                amount={expenses[3].amount}
-                date={expenses[3].date}
-            ></ExpenseItem>
-        </Card>
+      <div>
+        <p id="counter">{numero}</p>
+        <button onClick={onClickHandler}>Increment</button>
+      </div>
     );
 }
-
-export default App;

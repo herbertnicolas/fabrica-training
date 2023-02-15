@@ -1,5 +1,5 @@
 import React from "react";
-import './Expenses.css';
+import '../Expenses/Expenses.css';
 
 const expenses = [      
     {
