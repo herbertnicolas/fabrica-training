@@ -1,56 +1,70 @@
-import React, {useState} from 'react';
-import './ExpenseForm.css';
+import React, { useState } from "react";
+import "./ExpenseForm.css";
 
-function ExpenseForm() {
-    const [inputs, setInputs] = useState({
-        submittedTitle: '',
-        submittedAmount: '',
-        submittedData: '',
-    }) 
+function ExpenseForm(props) {
+    
+    const [submittedTitle, setSubmittedTitle] = useState("");
+    const [submittedAmount, setSubmittedAmount] = useState("");
+    const [submittedDate, setSubmittedDate] = useState("");
 
-    const titleChangeHandler = (event) => {
-        // setInputs({
-        //     ...inputs, 
-        //     submittedTitle: event.target.value,
-        // })
+    const submitHandler = (event) => {
+        event.preventDefault();
+        // console.log(submittedDate);
 
-        /* OBS: A forma comentada acima roda corretamente, mas nao é executada 
-        instantaneamente. Ela vai pegando os estados um por um */
-        setInputs((prevState)=>{ 
-            return{ 
-                ...prevState, //copiando os valores que já se tem, para alterar apenas um
-                submittedTitle: event.target.value,
-            }
-        })
-    }
+        //criando constante que vai ser o objeto com todas as informaçoes passadas pelo usuario
+        const dataToSubmit = {
+            title: submittedTitle,
+            amount: submittedAmount,
+            date: new Date(submittedDate),
+        };
+        //acessando a funçao via props implementada em OUTRO componente
+        //essa funçao é responsavel por atribuir ids random a cada objeto
+        props.onEnteredData(dataToSubmit); 
+        
+        console.log(dataToSubmit);
+    };
+
     const amountChangeHandler = (event) => {
-        setInputs({
-            ...inputs, 
-            submittedAmount: event.target.value,
-        })
-    }
+        setSubmittedAmount(event.target.value);
+    };
+    const titleChangeHandler = (event) => {
+        setSubmittedTitle(event.target.value);
+    };
     const dateChangeHandler = (event) => {
-        setInputs({
-            ...inputs,
-            submittedData: event.target.value,
-        })
-    }
+        setSubmittedDate(event.target.value);
+    };
 
     return (
-        <form>
+        <form onSubmit={submitHandler}>
             <div className="new-expense__controls">
                 <div className="new-expense__control">
                     <label>Title</label>
-                    <input type="text" onChange={titleChangeHandler}/>
+                    <input 
+                    type="text" 
+                    value={submittedTitle}
+                    onChange={titleChangeHandler} 
+                    />
                 </div>
                 <div className="new-expense__control">
                     <label>Amount</label>
-                    <input type="text" onChange={amountChangeHandler} min="0.01" step="0.01"/>
+                    <input
+                        type="text"
+                        min="0.01"
+                        step="0.01"
+                        value={submittedAmount}
+                        onChange={amountChangeHandler}
+                    />
                 </div>
 
                 <div className="new-expense__control">
                     <label>Date</label>
-                    <input type="date" onChange={dateChangeHandler} min="2023-02-15" step="0.01"/>
+                    <input
+                        type="date"
+                        min="2000-01-01"
+                        max="2100-01-01"
+                        value={submittedDate}
+                        onChange={dateChangeHandler}
+                    />
                 </div>
             </div>
             <div className="new-expense__actions">
