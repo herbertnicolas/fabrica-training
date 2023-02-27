@@ -3,6 +3,7 @@ import ExpenseDate from "../Expenses/ExpenseDate";
 import "../Expenses/ExpenseItem.css";
 import "../Expenses/ExpenseDate.css";
 import Card from "../UI/Card.js";
+import ExpensesFilter from "./ExpensesFilter";
 
 function ExpenseItem(props) {
 
@@ -12,7 +13,7 @@ function ExpenseItem(props) {
         setTitle('Atualizado');
         console.log(title);
     }
-    
+
     return (
         <Card className="expense-item">
             <ExpenseDate date={props.date}/>
