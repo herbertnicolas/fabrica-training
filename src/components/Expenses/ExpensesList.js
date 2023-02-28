@@ -5,10 +5,10 @@ function ExpensesList(props) {
 
   return (
     <div>
-      {props.filtered.length === 0 ? (
+      {props.items.length === 0 ? (
         <h2 className="expenses-list__fallback">Found no expenses</h2>
       ) : (
-        props.filtered.map((expense) => (
+        props.items.map((expense) => (
           <ExpenseItem
             key={expense.id}
             title={expense.title}

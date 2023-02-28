@@ -14,7 +14,7 @@ function ExpenseForm(props) {
         //criando constante que vai ser o objeto com todas as informaçoes passadas pelo usuario
         const dataToSubmit = {
             title: submittedTitle,
-            amount: submittedAmount,
+            amount: +submittedAmount,
             date: new Date(submittedDate),
         };
         //acessando a funçao via props implementada em OUTRO componente

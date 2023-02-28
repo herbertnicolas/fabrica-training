@@ -1,3 +1,5 @@
+import './ExpensesFilter.css';
+
 function ExpensesFilter(props){
     const selectorHandler = (event) => {
         props.onChangeFilter(event.target.value);
